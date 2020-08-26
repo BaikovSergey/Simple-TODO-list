@@ -1,0 +1,6 @@
+create table Task (
+  id serial primary key,
+  description varchar(200),
+  created varchar(10),
+  done boolean
+);
