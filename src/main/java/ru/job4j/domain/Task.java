@@ -13,14 +13,14 @@ public class Task {
     @Column(name = "description")
     private String description;
     @Column(name = "created")
-    private Date created;
+    private String created;
     @Column(name = "done")
     private Boolean done;
 
     public Task() {
     }
 
-    public Task(String description, Date created, Boolean done) {
+    public Task(String description, String created, Boolean done) {
         this.description = description;
         this.created = created;
         this.done = done;
@@ -42,11 +42,11 @@ public class Task {
         this.description = description;
     }
 
-    public Date getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
