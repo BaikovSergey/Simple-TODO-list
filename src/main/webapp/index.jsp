@@ -24,10 +24,11 @@
 </head>
 <body>
 <div class="container">
-    <form action="">
+    <form action="<%=request.getContextPath()%>/postTask.do" method="post">
         <div class="form-group">
-            <label for="id">Task description:</label>
-            <input type="text" class="form-control" placeholder="Task description" id="id">
+            <label for="description">Task description:</label>
+            <input type="text" class="form-control" placeholder="Task description"
+                   name="description" id="description">
         </div>
         <button type="submit" class="btn btn-primary">Create new task</button>
     </form>

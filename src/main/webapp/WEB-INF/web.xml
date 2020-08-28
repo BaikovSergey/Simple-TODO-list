@@ -4,4 +4,12 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>PostTask</servlet-name>
+    <servlet-class>ru.job4j.presentation.PostTask</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostTask</servlet-name>
+    <url-pattern>/postTask.do</url-pattern>
+  </servlet-mapping>
 </web-app>
