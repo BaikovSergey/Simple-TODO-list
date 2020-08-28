@@ -45,9 +45,10 @@
         $.getJSON('http://localhost:8080/index/getAllTasks.do', function (data) {
             for (var i = 0; i < data.length; i++) {
                 $('#tasksTable tr:last').after('<tr>' +
-                    '<td>' + data[i].description + '</td>' +
+                    '<td class="d-flex">' + data[i].description + '</td>' +
                     '<td>' + data[i].created + '</td>' +
-                    '<td>' + data[i].status + '</td></tr>');
+                    '<td>' + data[i].status + '</td>'+
+                    '<td><div class="btn-group btn-group-sm"><button type="button" class="btn btn-primary">Complete</button><button type="button" class="btn btn-primary">Change</button><button type="button" class="btn btn-primary">Delete</button></div> </td></tr>');
             }
         });
     </script>
@@ -71,13 +72,14 @@
         </label>
     </div>
 </div>
-<div class="container">
-    <table class="table" id="tasksTable">
+<div class="container" >
+    <table class="table" id="tasksTable" style="table-layout: fixed">
         <thead class="thead-light">
         <tr>
-            <th>Description</th>
-            <th>Date</th>
-            <th>Status</th>
+            <th style="width: 40%">Description</th>
+            <th style="width: 20%">Date</th>
+            <th style="width: 20%">Status</th>
+            <th style="width: 20%">Action</th>
         </tr>
         </thead>
         <tbody>
