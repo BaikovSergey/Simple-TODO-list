@@ -1,7 +1,6 @@
 package ru.job4j.domain;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -14,16 +13,16 @@ public class Task {
     private String description;
     @Column(name = "created")
     private String created;
-    @Column(name = "done")
-    private Boolean done;
+    @Column(name = "status")
+    private Boolean status;
 
     public Task() {
     }
 
-    public Task(String description, String created, Boolean done) {
+    public Task(String description, String created, Boolean status) {
         this.description = description;
         this.created = created;
-        this.done = done;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -50,12 +49,12 @@ public class Task {
         this.created = created;
     }
 
-    public Boolean getDone() {
-        return done;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setDone(Boolean done) {
-        this.done = done;
+    public void setStatus(Boolean done) {
+        this.status = done;
     }
 
     @Override
@@ -70,12 +69,12 @@ public class Task {
         return Objects.equals(id, task.id)
                 && Objects.equals(description, task.description)
                 && Objects.equals(created, task.created)
-                && Objects.equals(done, task.done);
+                && Objects.equals(status, task.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, created, done);
+        return Objects.hash(id, description, created, status);
     }
 
 }
