@@ -54,8 +54,8 @@
             <input type="text" class="form-control" placeholder="Enter new description"
                    name="description" id="description">
         </div>
-        <button type="submit" class="btn btn-primary" onclick="return validate();">Create new
-            task</button>
+        <button type="submit" class="btn btn-primary" onclick="return validate();">Change
+            description</button>
     </form>
 </div>
 </body>

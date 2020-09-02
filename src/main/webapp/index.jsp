@@ -41,11 +41,11 @@
             $("#allTasks tbody tr").empty();
             $.getJSON('http://localhost:8080/index/getAllTasks.do', function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $('#allTasks > tbody:last-child').append('<tr>'
+                    $('#allTasks > tbody:last-child').append('<tr class="task">'
                         + '<td class="id" style="display: none">' + data[i].id + '</td>'
-                        + '<td>' + data[i].description + '</td>'
-                        + '<td>' + data[i].created + '</td>'
-                        + '<td>' + data[i].status + '</td>'
+                        + '<td class="description">' + data[i].description + '</td>'
+                        + '<td class="created">' + data[i].created + '</td>'
+                        + '<td class="status">' + data[i].status + '</td>'
                         + '<td><div class="btn-group btn-group-sm"><button type="button" '
                         + 'class="btn btn-success">Complete</button><button type="button" '
                         + 'class="btn btn-primary">Change</button><button type="button" '
@@ -90,6 +90,16 @@
                     $id);
             });
         });
+
+        $(document).ready(function () {
+            $("#toggleList").click(function () {
+                $('#allTasks tbody > tr .status').filter(function () {
+                    return $(this).text() === "true";
+                }).each(function () {
+                    $(this).closest("tr").toggle();
+                });
+            });
+        });
     </script>
 </head>
 <body>
@@ -105,12 +115,11 @@
     </form>
 </div>
 <div class="container pt-5">
-    <div class="form-check">
-        <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" value="">Show all tasks
-        </label>
+    <div>
+        <button  type="button" class="btn btn-primary btn-sm" id="toggleList">Show all/ hide
+            complete
+        </button>
     </div>
-
 </div>
 
 <div class="container">
