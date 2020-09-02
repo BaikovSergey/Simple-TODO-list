@@ -22,4 +22,28 @@
         <servlet-name>GetAllTasks</servlet-name>
         <url-pattern>/getAllTasks.do</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteTask</servlet-name>
+        <servlet-class>ru.job4j.presentation.DeleteTask</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteTask</servlet-name>
+        <url-pattern>/deleteTask.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CompleteTask</servlet-name>
+        <servlet-class>ru.job4j.presentation.CompleteTask</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CompleteTask</servlet-name>
+        <url-pattern>/completeTask.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChangeTask</servlet-name>
+        <servlet-class>ru.job4j.presentation.ChangeTask</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeTask</servlet-name>
+        <url-pattern>/changeTask.do</url-pattern>
+    </servlet-mapping>
 </web-app>

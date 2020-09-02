@@ -24,6 +24,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <title>Simple TODO list</title>
+
     <script>
         function validate() {
             var result = true;
@@ -42,14 +43,49 @@
             return result;
         }
 
-        $.getJSON('http://localhost:8080/index/getAllTasks.do', function (data) {
-            for (var i = 0; i < data.length; i++) {
-                $('#tasksTable tr:last').after('<tr>' +
-                    '<td class="d-flex">' + data[i].description + '</td>' +
-                    '<td>' + data[i].created + '</td>' +
-                    '<td>' + data[i].status + '</td>'+
-                    '<td><div class="btn-group btn-group-sm"><button type="button" class="btn btn-primary">Complete</button><button type="button" class="btn btn-primary">Change</button><button type="button" class="btn btn-primary">Delete</button></div> </td></tr>');
-            }
+        function displayAllTasks() {
+            $("#allTasks tbody tr").empty();
+            $.getJSON('http://localhost:8080/index/getAllTasks.do', function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $('#allTasks > tbody:last-child').append('<tr>'
+                        + '<td class="id" style="display: none">' + data[i].id + '</td>'
+                        + '<td>' + data[i].description + '</td>'
+                        + '<td>' + data[i].created + '</td>'
+                        + '<td>' + data[i].status + '</td>'
+                        + '<td><div class="btn-group btn-group-sm"><button type="button" '
+                        + 'class="btn btn-success">Complete</button><button type="button" '
+                        + 'class="btn btn-primary">Change</button><button type="button" '
+                        + 'class="btn btn-danger">Delete</button></div></td></tr>');
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            displayAllTasks();
+        });
+
+        $(document).ready(function () {
+            $("#allTasks").on("click", ".btn-danger", function () {
+                var $row = $(this).closest("tr");
+                var $id = $row.find(".id").text();
+                $.post("http://localhost:8080/index/deleteTask.do",
+                    "id=" + $id,
+                    function () {
+                   displayAllTasks();
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $("#allTasks").on("click", ".btn-success", function () {
+                var $row = $(this).closest("tr");
+                var $id = $row.find(".id").text();
+                $.post("http://localhost:8080/index/completeTask.do",
+                    "id=" + $id,
+                    function () {
+                        displayAllTasks();
+                    });
+            });
         });
     </script>
 </head>
@@ -73,16 +109,17 @@
     </div>
 </div>
 <div class="container" >
-    <table class="table" id="tasksTable" style="table-layout: fixed">
+    <table class="table" id="allTasks" style="table-layout: fixed">
         <thead class="thead-light">
         <tr>
+            <th style="display: none">Id</th>
             <th style="width: 40%">Description</th>
             <th style="width: 20%">Date</th>
             <th style="width: 20%">Status</th>
             <th style="width: 20%">Action</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="allTasksBody">
 
         </tbody>
     </table>

@@ -1,7 +1,6 @@
 package ru.job4j.presentation;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 import ru.job4j.application.TODOList;
 import ru.job4j.domain.Task;
 
