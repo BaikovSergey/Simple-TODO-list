@@ -12,6 +12,7 @@ import java.io.IOException;
 public class ChangeTask extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         Integer id = Integer.parseInt(req.getParameter("id"));
         Task task = TODOList.instOf().findById(id);
         String description = req.getParameter("description");
