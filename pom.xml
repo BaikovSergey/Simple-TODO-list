@@ -83,7 +83,6 @@
 
   <build>
     <finalName>TODO_list</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
@@ -134,6 +133,6 @@
               </executions>
           </plugin>
       </plugins>
-    </pluginManagement>
+
   </build>
 </project>
