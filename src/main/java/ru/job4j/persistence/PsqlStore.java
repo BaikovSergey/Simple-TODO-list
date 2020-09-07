@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import ru.job4j.domain.Task;
+import ru.job4j.domain.User;
+
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -18,32 +20,70 @@ public class PsqlStore implements Store {
         return Lazy.INST;
     }
 
+
+
+
+
+
+
+
+
+
+
     @Override
-    public Task create(Task task, SessionFactory sf) {
+    public Task createTask(Task task, SessionFactory sf) {
         this.transaction(session -> session.save(task), sf);
         return task;
     }
 
     @Override
-    public void update(Task task, SessionFactory sf) {
+    public User createUser(User user, SessionFactory sf) {
+        this.transaction(session -> session.save(user), sf);
+        return user;
+    }
+
+    @Override
+    public void updateTask(Task task, SessionFactory sf) {
        this.transactionVoid(session -> session.update(task), sf);
     }
 
     @Override
-    public void delete(Integer id, SessionFactory sf) {
+    public void updateUser(User user, SessionFactory sf) {
+        this.transactionVoid(session -> session.update(user), sf);
+    }
+
+    @Override
+    public void deleteTask(Integer id, SessionFactory sf) {
         Task task = new Task();
         task.setId(id);
         this.transactionVoid(session -> session.delete(task), sf);
     }
 
     @Override
-    public Collection<Task> findAll(SessionFactory sf) {
+    public void deleteUser(Integer id, SessionFactory sf) {
+        User user = new User();
+        user.setId(id);
+        this.transactionVoid(session -> session.delete(user), sf);
+    }
+
+    @Override
+    public Collection<Task> findAllTasks(SessionFactory sf) {
         return this.transaction(session -> session.createQuery("from ru.job4j.domain.Task").list(),sf);
     }
 
     @Override
-    public Task findById(Integer id, SessionFactory sf) {
+    public Collection<User> findAllUsers(SessionFactory sf) {
+        return this.transaction(session -> session.createQuery("from ru.job4j.domain.User").list(),sf);
+    }
+
+    @Override
+    public Task findTaskById(Integer id, SessionFactory sf) {
         return this.transaction(session -> session.get(Task.class, id), sf);
+    }
+
+    @Override
+    public User findUserById(Integer id, SessionFactory sf) {
+        return this.transaction(session -> session.get(User.class, id), sf);
     }
 
     private <T> T transaction(final Function<Session, T> command, SessionFactory sf) {

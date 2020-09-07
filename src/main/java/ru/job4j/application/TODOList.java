@@ -5,10 +5,10 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.domain.Task;
+import ru.job4j.domain.User;
 import ru.job4j.persistence.PsqlStore;
 
 import java.util.Collection;
-import java.util.List;
 
 public class TODOList implements IList {
 
@@ -26,27 +26,52 @@ public class TODOList implements IList {
     }
 
     @Override
-    public Task create(Task task) {
-        return PsqlStore.instOf().create(task, sf);
+    public Task createTask(Task task) {
+        return PsqlStore.instOf().createTask(task, sf);
     }
 
     @Override
-    public void update(Task task) {
-        PsqlStore.instOf().update(task, sf);
+    public User createUser(User user) {
+        return PsqlStore.instOf().createUser(user, sf);
     }
 
     @Override
-    public void delete(Integer id) {
-        PsqlStore.instOf().delete(id, sf);
+    public void updateTask(Task task) {
+        PsqlStore.instOf().updateTask(task, sf);
     }
 
     @Override
-    public Collection<Task> findAll() {
-        return PsqlStore.instOf().findAll(sf);
+    public void updateUser(User user) {
+        PsqlStore.instOf().updateUser(user, sf);
     }
 
     @Override
-    public Task findById(Integer id) {
-        return PsqlStore.instOf().findById(id, sf);
+    public void deleteTask(Integer id) {
+        PsqlStore.instOf().deleteTask(id, sf);
+    }
+
+    @Override
+    public void deleteUser(Integer id) {
+        PsqlStore.instOf().deleteUser(id, sf);
+    }
+
+    @Override
+    public Collection<Task> findAllTasks() {
+        return PsqlStore.instOf().findAllTasks(sf);
+    }
+
+    @Override
+    public Collection<User> findAllUsers() {
+        return PsqlStore.instOf().findAllUsers(sf);
+    }
+
+    @Override
+    public Task findTaskById(Integer id) {
+        return PsqlStore.instOf().findTaskById(id, sf);
+    }
+
+    @Override
+    public User findUserById(Integer id) {
+        return PsqlStore.instOf().findUserById(id, sf);
     }
 }

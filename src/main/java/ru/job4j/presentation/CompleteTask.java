@@ -13,9 +13,9 @@ public class CompleteTask extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id = Integer.parseInt(req.getParameter("id"));
-        Task task = TODOList.instOf().findById(id);
+        Task task = TODOList.instOf().findTaskById(id);
         task.setStatus(true);
-        TODOList.instOf().update(task);
+        TODOList.instOf().updateTask(task);
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 }

@@ -1,24 +1,20 @@
 package ru.job4j.presentation;
 
 import ru.job4j.application.TODOList;
-import ru.job4j.domain.Task;
+import ru.job4j.domain.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class PostTask extends HttpServlet {
+public class CreateUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
-        TODOList.instOf().create(new Task(req.getParameter("description"),
-                formatter.format(date), false));
+        TODOList.instOf().createUser(new User(req.getParameter("name"),
+                req.getParameter("email"), req.getParameter("password")));
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 }

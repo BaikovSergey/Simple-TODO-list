@@ -26,20 +26,20 @@ public class PsqlStoreTest {
     public void createTask() {
         Task task = generateTask();
         task.setDescription("createTask");
-        int id = TODOList.instOf().create(task).getId();
-        Task result = TODOList.instOf().findById(id);
-        TODOList.instOf().delete(id);
+        int id = TODOList.instOf().createTask(task).getId();
+        Task result = TODOList.instOf().findTaskById(id);
+        TODOList.instOf().deleteTask(id);
         assertThat("createTask", is(result.getDescription()));
     }
 
     @Test
     public void updateTask() {
         Task task = generateTask();
-        int id = TODOList.instOf().create(task).getId();
+        int id = TODOList.instOf().createTask(task).getId();
         task.setDescription("changed description");
-        TODOList.instOf().update(task);
-        Task result = TODOList.instOf().findById(id);
-        TODOList.instOf().delete(id);
+        TODOList.instOf().updateTask(task);
+        Task result = TODOList.instOf().findTaskById(id);
+        TODOList.instOf().deleteTask(id);
         assertThat("changed description", is(result.getDescription()));
 
     }
@@ -47,15 +47,15 @@ public class PsqlStoreTest {
     @Test
     public void deleteTask() {
         Task task = generateTask();
-        int id = TODOList.instOf().create(task).getId();
-        TODOList.instOf().delete(id);
-        Collection<Task> all = TODOList.instOf().findAll();
+        int id = TODOList.instOf().createTask(task).getId();
+        TODOList.instOf().deleteTask(id);
+        Collection<Task> all = TODOList.instOf().findAllTasks();
         assertThat(0, is(all.size()));
     }
 
     @Test
     public void findAllTasks() {
-        Collection<Task> all = TODOList.instOf().findAll();
+        Collection<Task> all = TODOList.instOf().findAllTasks();
         assertThat(0, is(all.size()));
     }
 
@@ -63,9 +63,9 @@ public class PsqlStoreTest {
     public void findTaskById() {
         Task task = generateTask();
         task.setDescription("findById");
-        int id = TODOList.instOf().create(task).getId();
-        Task result = TODOList.instOf().findById(id);
-        TODOList.instOf().delete(id);
+        int id = TODOList.instOf().createTask(task).getId();
+        Task result = TODOList.instOf().findTaskById(id);
+        TODOList.instOf().deleteTask(id);
         assertThat("findById", is(result.getDescription()));
     }
 

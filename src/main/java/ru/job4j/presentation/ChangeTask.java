@@ -14,10 +14,10 @@ public class ChangeTask extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         Integer id = Integer.parseInt(req.getParameter("id"));
-        Task task = TODOList.instOf().findById(id);
+        Task task = TODOList.instOf().findTaskById(id);
         String description = req.getParameter("description");
         task.setDescription(description);
-        TODOList.instOf().update(task);
+        TODOList.instOf().updateTask(task);
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 }

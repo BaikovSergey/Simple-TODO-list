@@ -5,10 +5,18 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          id="WebApp_ID" version="3.1">
 
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>TODO list</display-name>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ru.job4j.presentation.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
   <servlet>
     <servlet-name>PostTask</servlet-name>
-    <servlet-class>ru.job4j.presentation.PostTask</servlet-class>
+    <servlet-class>ru.job4j.presentation.CreateTask</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PostTask</servlet-name>
@@ -45,5 +53,21 @@
     <servlet-mapping>
         <servlet-name>ChangeTask</servlet-name>
         <url-pattern>/changeTask.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Registration</servlet-name>
+        <servlet-class>ru.job4j.presentation.Registration</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Registration</servlet-name>
+        <url-pattern>/reg.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>ru.job4j.presentation.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login.do</url-pattern>
     </servlet-mapping>
 </web-app>

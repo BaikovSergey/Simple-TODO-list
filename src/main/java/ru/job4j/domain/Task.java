@@ -13,8 +13,12 @@ public class Task {
     private String description;
     @Column(name = "created")
     private String created;
-    @Column(name = "status")
+    @Column(name = "done")
     private Boolean status;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
+    private User user;
 
     public Task() {
     }
@@ -23,6 +27,15 @@ public class Task {
         this.description = description;
         this.created = created;
         this.status = status;
+    }
+
+    public static Task of(String description, String created, Boolean status, User user) {
+        Task task = new Task();
+        task.description = description;
+        task.created = created;
+        task.status = status;
+        task.user = user;
+        return task;
     }
 
     public Integer getId() {
@@ -57,6 +70,14 @@ public class Task {
         this.status = done;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -69,12 +90,12 @@ public class Task {
         return Objects.equals(id, task.id)
                 && Objects.equals(description, task.description)
                 && Objects.equals(created, task.created)
-                && Objects.equals(status, task.status);
+                && Objects.equals(status, task.status)
+                && Objects.equals(user, task.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, created, status);
+        return Objects.hash(id, description, created, status, user);
     }
-
 }

@@ -20,7 +20,7 @@ public class GetAllTasks extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json; charset=UTF-8");
-        Collection<Task> tasks = TODOList.instOf().findAll();
+        Collection<Task> tasks = TODOList.instOf().findAllTasks();
         JSONArray jsonArray = new JSONArray(tasks);
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(resp.getOutputStream(),
                 StandardCharsets.UTF_8), true);
