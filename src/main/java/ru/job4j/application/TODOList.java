@@ -7,6 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.domain.Task;
 import ru.job4j.persistence.PsqlStore;
 
+import java.util.Collection;
 import java.util.List;
 
 public class TODOList implements IList {
@@ -40,7 +41,7 @@ public class TODOList implements IList {
     }
 
     @Override
-    public List<Task> findAll() {
+    public Collection<Task> findAll() {
         return PsqlStore.instOf().findAll(sf);
     }
 

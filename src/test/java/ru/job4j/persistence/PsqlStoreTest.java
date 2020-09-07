@@ -5,9 +5,8 @@ import org.junit.Test;
 import ru.job4j.application.TODOList;
 import ru.job4j.domain.Task;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
@@ -50,13 +49,13 @@ public class PsqlStoreTest {
         Task task = generateTask();
         int id = TODOList.instOf().create(task).getId();
         TODOList.instOf().delete(id);
-        List<Task> all = TODOList.instOf().findAll();
+        Collection<Task> all = TODOList.instOf().findAll();
         assertThat(0, is(all.size()));
     }
 
     @Test
     public void findAllTasks() {
-        List<Task> all = TODOList.instOf().findAll();
+        Collection<Task> all = TODOList.instOf().findAll();
         assertThat(0, is(all.size()));
     }
 

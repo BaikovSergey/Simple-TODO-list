@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -19,7 +20,7 @@ public class GetAllTasks extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json; charset=UTF-8");
-        List<Task> tasks = TODOList.instOf().findAll();
+        Collection<Task> tasks = TODOList.instOf().findAll();
         JSONArray jsonArray = new JSONArray(tasks);
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(resp.getOutputStream(),
                 StandardCharsets.UTF_8), true);
