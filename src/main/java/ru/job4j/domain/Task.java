@@ -17,7 +17,7 @@ public class Task {
     private Boolean status;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "USER_ID_FK"))
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Task() {

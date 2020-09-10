@@ -16,6 +16,7 @@
         <!-- List of XML mapping files -->
 
         <mapping class="ru.job4j.domain.Task"/>
+        <mapping class="ru.job4j.domain.User"/>
 
     </session-factory>
 </hibernate-configuration>

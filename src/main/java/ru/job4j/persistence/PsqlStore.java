@@ -20,16 +20,6 @@ public class PsqlStore implements Store {
         return Lazy.INST;
     }
 
-
-
-
-
-
-
-
-
-
-
     @Override
     public Task createTask(Task task, SessionFactory sf) {
         this.transaction(session -> session.save(task), sf);

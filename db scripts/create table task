@@ -2,5 +2,6 @@ create table Task (
   id serial primary key,
   description varchar(200),
   created varchar(10),
-  done boolean
+  done boolean,
+  user_id int not null references TODO_list_users(id)
 );
