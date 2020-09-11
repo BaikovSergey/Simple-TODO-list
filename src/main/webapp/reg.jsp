@@ -17,7 +17,30 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <title>Dream job!</title>
+    <title>TODO list</title>
+    <script>
+        function validate() {
+            var result = true;
+            var fields = [document.getElementById("name"), document.getElementById("email"),
+                document.getElementById("password")];
+
+            for (var i = 0; i < fields.length; i++) {
+                if (fields[i].value === "") {
+                    result = false;
+                    break;
+                }
+            }
+
+            if (!result) {
+                for (var j = 0; j < fields.length; j++) {
+                    if (fields[j].value === "") {
+                        alert("Please fill this field: " + $(fields[j]).attr('name'));
+                    }
+                }
+            }
+            return result;
+        }
+    </script>
 </head>
 <body>
 <div class="container pt-3">
@@ -30,17 +53,17 @@
                 <form action="<%=request.getContextPath()%>/reg.do" method="post">
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" name="name" id="name">
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control" name="email">
+                        <input type="text" class="form-control" name="email" id="email">
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="text" class="form-control" name="password">
+                        <input type="text" class="form-control" name="password" id="password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary" onclick="return validate();">Register</button>
                 </form>
             </div>
         </div>

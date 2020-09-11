@@ -18,4 +18,5 @@ public interface Store {
     Collection<User> findAllUsers(SessionFactory sf);
     Task findTaskById(Integer id, SessionFactory sf);
     User findUserById(Integer id, SessionFactory sf);
+    User findUserByEmail(String email, SessionFactory sf);
 }

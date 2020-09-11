@@ -18,4 +18,5 @@ public interface IList {
     Collection<User> findAllUsers();
     Task findTaskById(Integer id);
     User findUserById(Integer id);
+    User findUserByEmail(String email);
 }

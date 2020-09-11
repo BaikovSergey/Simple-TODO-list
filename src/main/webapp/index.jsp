@@ -103,6 +103,10 @@
     </script>
 </head>
 <body>
+<div class="container text-right">
+        <a class="nav-link" href="<%=request.getContextPath()%>/login.do"> <c:out
+                value="${user.name}"/> | Sign in</a>
+</div>
 <div class="container">
     <form action="<%=request.getContextPath()%>/postTask.do" method="post">
         <div class="form-group">

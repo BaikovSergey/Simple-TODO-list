@@ -1,8 +1,10 @@
 package ru.job4j.persistence;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import ru.job4j.domain.Task;
 import ru.job4j.domain.User;
 
@@ -74,6 +76,15 @@ public class PsqlStore implements Store {
     @Override
     public User findUserById(Integer id, SessionFactory sf) {
         return this.transaction(session -> session.get(User.class, id), sf);
+    }
+
+    @Override
+    public User findUserByEmail(String email, SessionFactory sf) {
+        Session session = sf.openSession();
+        Query<User> query = session.createQuery("from User u where u.email=:scn",
+                User.class);
+        query.setParameter("scn", email);
+        return query.uniqueResult();
     }
 
     private <T> T transaction(final Function<Session, T> command, SessionFactory sf) {

@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="ru.job4j.Candidate" %>
-<%@ page import="ru.job4j.persistence.PsqlStore" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,14 +17,36 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <title>Dream job!</title>
+    <title>TODO list</title>
+    <script>
+        function validate() {
+            var result = true;
+            var fields = [document.getElementById("email"), document.getElementById("password")];
+
+            for (var i = 0; i < fields.length; i++) {
+                if (fields[i].value === "") {
+                    result = false;
+                    break;
+                }
+            }
+
+            if (!result) {
+                for (var j = 0; j < fields.length; j++) {
+                    if (fields[j].value === "") {
+                        alert("Please fill this field: " + $(fields[j]).attr('name'));
+                    }
+                }
+            }
+            return result;
+        }
+    </script>
 </head>
 <body>
 <div class="container pt-3">
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Авторизация
+                Authorisation
             </div>
             <div class="card-body">
                 <form action="<%=request.getContextPath()%>/login.do" method="post">
@@ -35,17 +55,14 @@
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <label>
-                            <input type="text" class="form-control" name="email">
-                        </label>
+                        <input type="text" class="form-control" name="email" id="email">
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <label>
-                            <input type="text" class="form-control" name="password">
-                        </label>
+                        <input type="text" class="form-control" name="password" id="password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
+                    <button type="submit" class="btn btn-primary"
+                            onclick="return validate();">Sign in</button>
                     <a href="<%=request.getContextPath()%>/reg.do" class="btn btn-info"
                        role="button">Registration</a>
                 </form>

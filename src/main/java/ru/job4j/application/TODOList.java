@@ -74,4 +74,9 @@ public class TODOList implements IList {
     public User findUserById(Integer id) {
         return PsqlStore.instOf().findUserById(id, sf);
     }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return PsqlStore.instOf().findUserByEmail(email, sf);
+    }
 }

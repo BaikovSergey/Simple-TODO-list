@@ -15,12 +15,12 @@ public class LoginFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) sreq;
         HttpServletResponse resp = (HttpServletResponse) sresp;
         String uri = req.getRequestURI();
-        if (uri.endsWith("login.do") || uri.endsWith("reg.do") || uri.endsWith("index")) {
+        if (uri.endsWith("login.do") || uri.endsWith("reg.do")) {
             chain.doFilter(sreq, sresp);
             return;
         }
         if (req.getSession().getAttribute("user") == null) {
-            req.getRequestDispatcher("login.do").forward(req, resp);
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
             return;
         }
         chain.doFilter(sreq, sresp);

@@ -1,5 +1,8 @@
 package ru.job4j.presentation;
 
+import ru.job4j.application.TODOList;
+import ru.job4j.domain.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,16 +18,16 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String email = req.getParameter("email");
-//        String password = req.getParameter("password");
-//        User user = PsqlStore.instOf().findUserByEmail(email);
-//        if (user != null && (user.getEmail().equals(email) && user.getPassword().equals(password))) {
-//            HttpSession sc = req.getSession();
-//            sc.setAttribute("user", user);
-//            resp.sendRedirect(req.getContextPath());
-//        } else {
-//            req.setAttribute("error", "Ошибка: Неверный email или пароль");
-//            req.getRequestDispatcher("/login/login.jsp").forward(req, resp);
-//        }
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        User user = TODOList.instOf().findUserByEmail(email);
+        if (user != null && (user.getEmail().equals(email) && user.getPassword().equals(password))) {
+            HttpSession sc = req.getSession();
+            sc.setAttribute("user", user);
+            resp.sendRedirect(req.getContextPath());
+        } else {
+            req.setAttribute("error", "Error: Incorrect email or password");
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
+        }
     }
 }
