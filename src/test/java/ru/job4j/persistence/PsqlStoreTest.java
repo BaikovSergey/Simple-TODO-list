@@ -1,6 +1,5 @@
 package ru.job4j.persistence;
 
-
 import org.junit.Test;
 import ru.job4j.application.TODOList;
 import ru.job4j.domain.Task;

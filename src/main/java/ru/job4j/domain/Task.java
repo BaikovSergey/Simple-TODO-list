@@ -29,6 +29,13 @@ public class Task {
         this.status = status;
     }
 
+    public Task(String description, String created, Boolean status, User user) {
+        this.description = description;
+        this.created = created;
+        this.status = status;
+        this.user = user;
+    }
+
     public static Task of(String description, String created, Boolean status, User user) {
         Task task = new Task();
         task.description = description;

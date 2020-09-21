@@ -24,6 +24,7 @@ public class Login extends HttpServlet {
         if (user != null && (user.getEmail().equals(email) && user.getPassword().equals(password))) {
             HttpSession sc = req.getSession();
             sc.setAttribute("user", user);
+            sc.setAttribute("userId", user.getId());
             resp.sendRedirect(req.getContextPath());
         } else {
             req.setAttribute("error", "Error: Incorrect email or password");

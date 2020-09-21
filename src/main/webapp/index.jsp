@@ -39,10 +39,11 @@
 
         function displayAllTasks() {
             $("#allTasks tbody tr").empty();
-            $.getJSON('http://localhost:8080/index/getAllTasks.do', function (data) {
+            $.getJSON('http://localhost:8080/index.do/getAllTasks.do', function (data) {
                 for (var i = 0; i < data.length; i++) {
                     $('#allTasks > tbody:last-child').append('<tr class="task">'
                         + '<td class="id" style="display: none">' + data[i].id + '</td>'
+                        + '<td class="userName">' + data[i].user.name + '</td>'
                         + '<td class="description">' + data[i].description + '</td>'
                         + '<td class="created">' + data[i].created + '</td>'
                         + '<td class="status">' + data[i].status + '</td>'
@@ -62,7 +63,7 @@
             $("#allTasks").on("click", ".btn-danger", function () {
                 var $row = $(this).closest("tr");
                 var $id = $row.find(".id").text();
-                $.post("http://localhost:8080/index/deleteTask.do",
+                $.post("http://localhost:8080/index.do/deleteTask.do",
                     "id=" + $id,
                     function () {
                    displayAllTasks();
@@ -74,7 +75,7 @@
             $("#allTasks").on("click", ".btn-success", function () {
                 var $row = $(this).closest("tr");
                 var $id = $row.find(".id").text();
-                $.post("http://localhost:8080/index/completeTask.do",
+                $.post("http://localhost:8080/index.do/completeTask.do",
                     "id=" + $id,
                     function () {
                         displayAllTasks();
@@ -86,7 +87,7 @@
             $("#allTasks").on("click", ".btn-primary", function () {
                 var $row = $(this).closest("tr");
                 var $id = $row.find(".id").text();
-                window.location.replace("http://localhost:8080/index/editTaskDescription.jsp?id=" +
+                window.location.replace("http://localhost:8080/index.do/editTaskDescription.jsp?id=" +
                     $id);
             });
         });
@@ -100,11 +101,12 @@
                 });
             });
         });
+
     </script>
 </head>
 <body>
 <div class="container text-right">
-        <a class="nav-link" href="<%=request.getContextPath()%>/login.do"> <c:out
+        <a class="nav-link" href="<%=request.getContextPath()%>/login.do" id="login"> <c:out
                 value="${user.name}"/> | Sign in</a>
 </div>
 <div class="container">
@@ -131,7 +133,8 @@
         <thead class="thead-light">
         <tr>
             <th style="display: none">Id</th>
-            <th style="width: 40%">Description</th>
+            <th style="width: 10%">Name</th>
+            <th style="width: 30%">Description</th>
             <th style="width: 20%">Date</th>
             <th style="width: 20%">Status</th>
             <th style="width: 20%">Action</th>
