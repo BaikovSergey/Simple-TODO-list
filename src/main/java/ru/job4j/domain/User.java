@@ -26,14 +26,6 @@ public class User {
         this.password = password;
     }
 
-    public static User of(String name, String email, String password) {
-        User user = new User();
-        user.name = name;
-        user.email = email;
-        user.password = password;
-        return user;
-    }
-
     public int getId() {
         return id;
     }

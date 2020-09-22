@@ -36,15 +36,6 @@ public class Task {
         this.user = user;
     }
 
-    public static Task of(String description, String created, Boolean status, User user) {
-        Task task = new Task();
-        task.description = description;
-        task.created = created;
-        task.status = status;
-        task.user = user;
-        return task;
-    }
-
     public Integer getId() {
         return id;
     }

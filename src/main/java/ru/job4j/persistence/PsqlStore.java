@@ -1,6 +1,5 @@
 package ru.job4j.persistence;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
